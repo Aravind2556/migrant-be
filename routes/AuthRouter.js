@@ -40,10 +40,10 @@ AuthRouter.post('/login', async (req, res) => {
     const migrant = await MigrantModel.findOne({ email });
 
     if (migrant) {
-        const dobString = new Date(migrant.dateOfBirth).toISOString().split('T')[0];
+        const dobString = (migrant.phoneNumber)
 
         if (dobString !== password) {
-            return res.send({ success: false, message: "Invalid Date of Birth!" });
+            return res.send({ success: false, message: "Invalid password please enter your phone number!" });
         }
 
         req.session.user = {
